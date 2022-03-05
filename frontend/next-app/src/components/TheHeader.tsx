@@ -1,9 +1,15 @@
 import React from 'react';
+import Link from 'next/link';
 
 const TheHeader = () => {
   return (
     <>
-      <p>Header</p>
+      <div>
+        <p>Header</p>
+        <Link href={'/ProductList'}>
+          <a>ProductList</a>
+        </Link>
+      </div>
     </>
   );
 };
