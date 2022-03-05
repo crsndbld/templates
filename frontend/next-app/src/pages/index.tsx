@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Home: NextPage = () => {
   return (
     <>
-      <p>Home</p>
+      <h1 className='text-3xl font-bold underline'>Hello world!</h1>
     </>
   );
 };
