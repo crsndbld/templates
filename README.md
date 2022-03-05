@@ -12,6 +12,8 @@ yarn add --dev --exact prettier
 yarn add --dev eslint-config-prettier
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+relay
+recoil
 ```
 
 # Usage
