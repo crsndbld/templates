@@ -8,9 +8,9 @@ function fetchQuery(operation, variables, cacheConfig, uploadables) {
   return fetch(process.env.NEXT_PUBLIC_RELAY_ENDPOINT, {
     method: 'POST',
     headers: {
-      Authorization: `bearer ${Token}`,
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'x-hasura-access-key': `${Token}`,
     },
     body: JSON.stringify({
       query: operation.text,
