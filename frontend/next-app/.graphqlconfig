@@ -1,0 +1,8 @@
+{
+  "schemaPath": "src/schema/schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "dev": "https://new-macaque-58.hasura.app/v1beta1/relay"
+    }
+  }
+}
