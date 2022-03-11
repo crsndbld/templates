@@ -20,7 +20,7 @@ const SelectList: VFC<Props> = ({ selectItems, selectChange }) => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         onChange={(e) => selectChange(e.target.value)}
       >
-        {selectItems.map((v) => (
+        {selectItems?.map((v) => (
           <option key={v.key} value={v.id}>
             {v.name}
           </option>
