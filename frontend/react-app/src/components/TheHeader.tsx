@@ -8,6 +8,7 @@ const TheHeader: VFC<Props> = () => {
     <>
       <nav>
         <Link to="/">HOME</Link>
+        <Link to="ItemList">商品一覧</Link>
       </nav>
     </>
   );
