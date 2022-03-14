@@ -1,0 +1,375 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""whether this query should be cached (Hasura Cloud only)"""
+directive @cached(
+  """measured in seconds"""
+  ttl: Int! = 60
+
+  """refresh the cache entry"""
+  refresh: Boolean! = false
+) on QUERY
+
+"""An object with globally unique ID"""
+interface Node {
+  """A globally unique identifier"""
+  id: ID!
+}
+
+type PageInfo {
+  endCursor: String!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String!
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+
+  """does the column match the given case-insensitive pattern"""
+  _ilike: String
+  _in: [String!]
+
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+
+  """does the column match the given pattern"""
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+
+  """does the column NOT match the given case-insensitive pattern"""
+  _nilike: String
+  _nin: [String!]
+
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+
+  """does the column NOT match the given pattern"""
+  _nlike: String
+
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+
+  """does the column NOT match the given SQL regular expression"""
+  _nsimilar: String
+
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+
+  """does the column match the given SQL regular expression"""
+  _similar: String
+}
+
+"""
+columns and relationships of "ecommerce.products"
+"""
+type ecommerce_products implements Node {
+  createdat: timestamptz!
+  id: ID!
+  name: String!
+  updatedat: timestamptz!
+}
+
+"""
+A Relay connection object on "ecommerce.products"
+"""
+type ecommerce_productsConnection {
+  edges: [ecommerce_productsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ecommerce_productsEdge {
+  cursor: String!
+  node: ecommerce_products!
+}
+
+"""
+Boolean expression to filter rows from the table "ecommerce.products". All fields are combined with a logical 'AND'.
+"""
+input ecommerce_products_bool_exp {
+  _and: [ecommerce_products_bool_exp!]
+  _not: ecommerce_products_bool_exp
+  _or: [ecommerce_products_bool_exp!]
+  createdat: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+  updatedat: timestamptz_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "ecommerce.products"
+"""
+enum ecommerce_products_constraint {
+  """unique or primary key constraint"""
+  products_pkey
+}
+
+"""
+input type for inserting data into table "ecommerce.products"
+"""
+input ecommerce_products_insert_input {
+  createdat: timestamptz
+  id: uuid
+  name: String
+  updatedat: timestamptz
+}
+
+"""
+response of any mutation on the table "ecommerce.products"
+"""
+type ecommerce_products_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [ecommerce_products!]!
+}
+
+"""
+on_conflict condition type for table "ecommerce.products"
+"""
+input ecommerce_products_on_conflict {
+  constraint: ecommerce_products_constraint!
+  update_columns: [ecommerce_products_update_column!]! = []
+  where: ecommerce_products_bool_exp
+}
+
+"""Ordering options when selecting data from "ecommerce.products"."""
+input ecommerce_products_order_by {
+  createdat: order_by
+  id: order_by
+  name: order_by
+  updatedat: order_by
+}
+
+"""primary key columns input for table: ecommerce_products"""
+input ecommerce_products_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "ecommerce.products"
+"""
+enum ecommerce_products_select_column {
+  """column name"""
+  createdat
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  updatedat
+}
+
+"""
+input type for updating data in table "ecommerce.products"
+"""
+input ecommerce_products_set_input {
+  createdat: timestamptz
+  id: uuid
+  name: String
+  updatedat: timestamptz
+}
+
+"""
+update columns of table "ecommerce.products"
+"""
+enum ecommerce_products_update_column {
+  """column name"""
+  createdat
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  updatedat
+}
+
+"""mutation root"""
+type mutation_root {
+  """
+  delete data from the table: "ecommerce.products"
+  """
+  delete_ecommerce_products(
+    """filter the rows which have to be deleted"""
+    where: ecommerce_products_bool_exp!
+  ): ecommerce_products_mutation_response
+
+  """
+  delete single row from the table: "ecommerce.products"
+  """
+  delete_ecommerce_products_by_pk(id: uuid!): ecommerce_products
+
+  """
+  insert data into the table: "ecommerce.products"
+  """
+  insert_ecommerce_products(
+    """the rows to be inserted"""
+    objects: [ecommerce_products_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: ecommerce_products_on_conflict
+  ): ecommerce_products_mutation_response
+
+  """
+  insert a single row into the table: "ecommerce.products"
+  """
+  insert_ecommerce_products_one(
+    """the row to be inserted"""
+    object: ecommerce_products_insert_input!
+
+    """upsert condition"""
+    on_conflict: ecommerce_products_on_conflict
+  ): ecommerce_products
+
+  """
+  update data of the table: "ecommerce.products"
+  """
+  update_ecommerce_products(
+    """sets the columns of the filtered rows to the given values"""
+    _set: ecommerce_products_set_input
+
+    """filter the rows which have to be updated"""
+    where: ecommerce_products_bool_exp!
+  ): ecommerce_products_mutation_response
+
+  """
+  update single row of the table: "ecommerce.products"
+  """
+  update_ecommerce_products_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: ecommerce_products_set_input
+    pk_columns: ecommerce_products_pk_columns_input!
+  ): ecommerce_products
+}
+
+"""column ordering options"""
+enum order_by {
+  """in ascending order, nulls last"""
+  asc
+
+  """in ascending order, nulls first"""
+  asc_nulls_first
+
+  """in ascending order, nulls last"""
+  asc_nulls_last
+
+  """in descending order, nulls first"""
+  desc
+
+  """in descending order, nulls first"""
+  desc_nulls_first
+
+  """in descending order, nulls last"""
+  desc_nulls_last
+}
+
+type query_root {
+  """
+  fetch data from the table: "ecommerce.products"
+  """
+  ecommerce_products_connection(
+    after: String
+    before: String
+
+    """distinct select on columns"""
+    distinct_on: [ecommerce_products_select_column!]
+    first: Int
+    last: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [ecommerce_products_order_by!]
+
+    """filter the rows returned"""
+    where: ecommerce_products_bool_exp
+  ): ecommerce_productsConnection!
+  node(
+    """A globally unique id"""
+    id: ID!
+  ): Node
+}
+
+type subscription_root {
+  """
+  fetch data from the table: "ecommerce.products"
+  """
+  ecommerce_products_connection(
+    after: String
+    before: String
+
+    """distinct select on columns"""
+    distinct_on: [ecommerce_products_select_column!]
+    first: Int
+    last: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [ecommerce_products_order_by!]
+
+    """filter the rows returned"""
+    where: ecommerce_products_bool_exp
+  ): ecommerce_productsConnection!
+  node(
+    """A globally unique id"""
+    id: ID!
+  ): Node
+}
+
+scalar timestamptz
+
+"""
+Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+scalar uuid
+
+"""
+Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
+"""
+input uuid_comparison_exp {
+  _eq: uuid
+  _gt: uuid
+  _gte: uuid
+  _in: [uuid!]
+  _is_null: Boolean
+  _lt: uuid
+  _lte: uuid
+  _neq: uuid
+  _nin: [uuid!]
+}
+
