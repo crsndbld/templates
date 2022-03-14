@@ -10,7 +10,7 @@ const Layout: VFC<Props> = ({ children }) => {
   return (
     <>
       <TheHeader />
-      {children}
+      <div className="container w-[1024px]">{children}</div>
       <TheFooter />
     </>
   );
