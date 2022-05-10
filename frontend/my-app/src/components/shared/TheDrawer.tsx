@@ -13,7 +13,7 @@ const TheDrawer: VFC<Props> = ({ children, isOpen, onClose }) => {
           "fixed inset-0 z-10 bg-gray-900 bg-opacity-25 overflow-hidden transform ease-in-out" +
           (isOpen
             ? " transition-opacity opacity-100 duration-500 translate-x-0"
-            : " transition-opacity opacity-0 duration-500 translate-x-full")
+            : " transition-all opacity-0 duration-500 -translate-x-full")
         }
       >
         <div
