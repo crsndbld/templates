@@ -5,7 +5,7 @@ type Props = {};
 const TheFooter: VFC<Props> = () => {
   return (
     <>
-      <p>TheFooter</p>
+      <footer>TheFooter</footer>
     </>
   );
 };

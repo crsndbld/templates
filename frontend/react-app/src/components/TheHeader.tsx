@@ -6,10 +6,12 @@ type Props = {};
 const TheHeader: VFC<Props> = () => {
   return (
     <>
-      <nav>
-        <Link to="/">HOME</Link>
-        <Link to="ItemList">商品一覧</Link>
-      </nav>
+      <header>
+        <nav>
+          <Link to="/">HOME</Link>
+          <Link to="ItemList">商品一覧</Link>
+        </nav>
+      </header>
     </>
   );
 };
