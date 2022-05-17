@@ -243,6 +243,12 @@ export const siteSettings = {
         value: 'es',
         icon: <ESFlag />,
       },
+      {
+        id: 'ja',
+        name: '日本 - JA',
+        value: 'ja',
+        icon: <ESFlag />,
+      },
     ],
   },
 };

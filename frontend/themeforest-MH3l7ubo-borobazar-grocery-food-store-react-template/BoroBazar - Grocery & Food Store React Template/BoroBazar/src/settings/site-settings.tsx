@@ -239,8 +239,14 @@ export const siteSettings = {
       },
       {
         id: 'es',
-        name: 'Español - ES',
+        name: '日本 - ES',
         value: 'es',
+        icon: <ESFlag />,
+      },
+      {
+        id: 'ja',
+        name: 'Español - JA',
+        value: 'ja',
         icon: <ESFlag />,
       },
     ],
