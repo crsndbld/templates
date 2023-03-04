@@ -1,0 +1,15 @@
+{
+  "name": "nuxt-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nuxtjs/apollo": "5.0.0-alpha.5"
+  }
+}
